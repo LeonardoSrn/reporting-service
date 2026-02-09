@@ -1,4 +1,4 @@
-# etaONE Reporting Service
+# Standalone Reporting Service
 
 A modern, self-contained PDF/screenshot generation service using Playwright for
 headless browser automation.
@@ -86,7 +86,7 @@ Generates a PDF or screenshot from a URL.
 
 ```json
 {
-  "url": "https://app.etaone.io/dashboards/123?data-capture=true",
+  "url": "https://<api_url>/dashboards/123?data-capture=true",
   "format": "pdf",
   "timeout": 60000,
   "width": 1920,
@@ -170,14 +170,15 @@ reports. The service URL is configured in `ReportService`:
 ```typescript
 // Default: http://localhost:3001
 // Production: Set window.REPORTING_SERVICE_URL in index.html or env config
-const REPORTING_SERVICE_URL = window.REPORTING_SERVICE_URL || 'http://localhost:3001';
+const REPORTING_SERVICE_URL =
+  window.REPORTING_SERVICE_URL || "http://localhost:3001";
 ```
 
 For production deployment, add to your `index.html`:
 
 ```html
 <script>
-  window.REPORTING_SERVICE_URL = 'https://reporting.your-domain.com';
+  window.REPORTING_SERVICE_URL = "https://reporting.your-domain.com";
 </script>
 ```
 
@@ -283,8 +284,8 @@ Enable verbose logging by modifying `src/server.ts`:
 
 ```typescript
 // Add more detailed logging
-console.log('[Generate] Request body:', JSON.stringify(req.body, null, 2));
-console.log('[Generate] Auth token:', authToken ? 'present' : 'missing');
+console.log("[Generate] Request body:", JSON.stringify(req.body, null, 2));
+console.log("[Generate] Auth token:", authToken ? "present" : "missing");
 ```
 
 ## 📝 Development Notes

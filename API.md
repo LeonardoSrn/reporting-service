@@ -63,7 +63,7 @@ Authorization: Bearer <token>
 
 ```json
 {
-  "url": "https://app.etaone.io/dashboards/123?data-capture=true",
+  "url": "https://<api_url>/dashboards/123?data-capture=true",
   "format": "pdf",
   "timeout": 60000,
   "width": 1920,
@@ -122,15 +122,15 @@ curl -X POST http://localhost:3001/generate \
 **Example Request** (JavaScript):
 
 ```javascript
-const response = await fetch('http://localhost:3001/generate', {
-  method: 'POST',
+const response = await fetch("http://localhost:3001/generate", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     Authorization: `Bearer ${authToken}`,
   },
   body: JSON.stringify({
-    url: 'http://localhost:4200/dashboards/123?data-capture=true',
-    format: 'pdf',
+    url: "http://localhost:4200/dashboards/123?data-capture=true",
+    format: "pdf",
     timeout: 60000,
   }),
 });
@@ -140,35 +140,37 @@ if (response.ok) {
   // Download or display the PDF
 } else {
   const error = await response.json();
-  console.error('Generation failed:', error);
+  console.error("Generation failed:", error);
 }
 ```
 
 **Example Request** (Angular):
 
 ```typescript
-this.http.post<Blob>(
-  'http://localhost:3001/generate',
-  {
-    url: dashboardUrl,
-    format: 'pdf',
-    timeout: 60000,
-  },
-  {
-    headers: {
-      Authorization: `Bearer ${this.authService.token()}`,
+this.http
+  .post<Blob>(
+    "http://localhost:3001/generate",
+    {
+      url: dashboardUrl,
+      format: "pdf",
+      timeout: 60000,
     },
-    responseType: 'blob' as 'json',
-  }
-).subscribe({
-  next: (blob) => {
-    // Download the PDF
-    this.downloadBlob(blob, 'report.pdf');
-  },
-  error: (err) => {
-    console.error('Failed to generate report:', err);
-  },
-});
+    {
+      headers: {
+        Authorization: `Bearer ${this.authService.token()}`,
+      },
+      responseType: "blob" as "json",
+    },
+  )
+  .subscribe({
+    next: (blob) => {
+      // Download the PDF
+      this.downloadBlob(blob, "report.pdf");
+    },
+    error: (err) => {
+      console.error("Failed to generate report:", err);
+    },
+  });
 ```
 
 ## Error Handling
@@ -227,7 +229,7 @@ Development mode allows all origins (`Access-Control-Allow-Origin: *`).
 For production, update `src/server.ts` to restrict origins:
 
 ```typescript
-res.header('Access-Control-Allow-Origin', 'https://app.etaone.io');
+res.header("Access-Control-Allow-Origin", "https://<api_url>");
 ```
 
 ## Monitoring

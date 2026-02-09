@@ -4,7 +4,7 @@
 set -e  # Exit on error
 
 echo "========================================="
-echo "  etaONE Reporting Service Installation"
+echo "  Reporting Service Installation"
 echo "========================================="
 echo ""
 
